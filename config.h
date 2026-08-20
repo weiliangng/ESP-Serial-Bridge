@@ -19,8 +19,8 @@
 
 #define OTA_HANDLER          // uncomment to enable OTA programming
 
-#define SSID     "ssid"      // SSID to join (or broadcast)
-#define PASSWD   "password"  // wiFi password
+#define SSID     "3301"      // SSID to join (or broadcast)
+#define PASSWD   "33013401"  // wiFi password
 #define HOSTNAME "esp32"     // hostname for STA mode mDNS
 
 #define BUFFERSIZE 1024
@@ -31,8 +31,8 @@
 #define VERSION "2.0-ESP8266"
 #endif
 
-#define MODE_STA               // MODE_STA or MODE_AP
-#define PROTOCOL_TCP           // uncomment to enable TCP server
+#define MODE_AP               // MODE_STA or MODE_AP
+//#define PROTOCOL_TCP           // uncomment to enable TCP server
 #define MAX_NMEA_CLIENTS 4     // max TCP clients
 #define PROTOCOL_UDP           // uncomment to enable UDP broadcast (ESP32 only)
 //#define BLUETOOTH 0          // uncomment to create a bluetooth serial bridge on the indicated serial port (ESP32 only)
@@ -55,7 +55,7 @@
 #define SERIAL0_TCP_PORT 8880     // TCP Port UART0
 #define SERIAL0_UDP_PORT 14550    // UDP Port UART0           (ESP32 only)
 /*************************  COM Port 1 *******************************/
-#define UART_BAUD1 115200           // Baudrate UART1
+#define UART_BAUD1 921600           // Baudrate UART1
 #define SERIAL_PARAM1 SERIAL_8N1    // Data/Parity/Stop UART1 (use SWSERIAL_* for ESP8266)
 #define SERIAL1_TXPIN 17            // transmit Pin UART1
 #define SERIAL1_RXPIN 16            // receive Pin UART1
