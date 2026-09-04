@@ -19,6 +19,31 @@ There are many configurable parameters in `config.h`. Edit to suit your needs - 
 
 # ESP32-Serial-Bridge
 
+## Prebuilt release
+
+The current ESP32 DevKit build is available as a single, complete flash image in
+[`releases/v2.0-esp32-b808213`](releases/v2.0-esp32-b808213). It is derived from
+source revision `b808213ef88063a63280170b72387edf6b119964` and is intended for a
+standard 4 MB ESP32 Dev Module.
+
+To flash it with [ESPWebTool](https://esptool.spacehuhn.com/), add
+`ESP-Serial-Bridge-v2.0-esp32-b808213.bin`, set its address to `0x0`, and click
+**Program**. The image contains the bootloader, partition table, OTA boot data,
+and application; do not add the individual build files separately.
+
+The release is an immutable snapshot of the current build configuration. Its
+Wi-Fi/AP settings are intentionally retained from `config.h`: this is a
+single-device bridge configuration, not a multi-device deployment. Run only
+one such bridge in the same local setup at a time, because every flashed unit
+uses the same AP identity and static address (`192.168.4.1`).
+
+Connect to the bridge access point with:
+
+| Setting | Value |
+| --- | --- |
+| SSID | `3301` |
+| Password | `33013401` |
+
 Transparent WiFi (TCP) to all three UART Bridge, supports both AP and STATION WiFi modes. The .ino file is the code for the ESP32. Use Arduino IDE for ESP32 to compile and upload it to the ESP32.
 I made this project in order to connect Flight equipment devices devices like (Radio, Vario FLARM), to a Flight Computer (Kobo, Smartphones etc.),  but it is not limited to that. You can use it wherever you want, but on your own risk. Read license file for more details.                                  
 
