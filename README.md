@@ -26,10 +26,43 @@ The current ESP32 DevKit build is available as a single, complete flash image in
 source revision `b808213ef88063a63280170b72387edf6b119964` and is intended for a
 standard 4 MB ESP32 Dev Module.
 
-To flash it with [ESPWebTool](https://esptool.spacehuhn.com/), add
-`ESP-Serial-Bridge-v2.0-esp32-b808213.bin`, set its address to `0x0`, and click
-**Program**. The image contains the bootloader, partition table, OTA boot data,
-and application; do not add the individual build files separately.
+### Flash with ESPWebTool
+
+Use Chrome or Edge and a USB data cable. The browser must support Web Serial.
+
+1. Plug the ESP32 into the computer and open
+   [ESPWebTool](https://esptool.spacehuhn.com/).
+2. Click the green **CONNECT** button.
+3. Allow serial-device access if the browser asks for permission. In the port
+   chooser, select the ESP32's USB-to-UART port. On Windows this will usually be
+   named **Silicon Labs CP210x USB to UART Bridge (COMx)** for a CP2102/CP2102B
+   board. The COM number will vary. If no CP210x port appears, install the
+   [Silicon Labs CP210x VCP driver](https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers)
+   and check that the USB cable supports data.
+4. Select the port, then try these connection methods in order. Return to step
+   2 before each retry:
+   - **Method 1 - automatic reset:** Do not press either board button; click
+     **Connect** in the browser's port chooser. This worked on the CP210x ESP32
+     used to verify this release.
+   - **Method 2 - hold BOOT:** Hold **BOOT**, click **Connect**, and keep holding
+     **BOOT** until ESPWebTool either connects or reports an error. Then release
+     it.
+   - **Method 3 - manual bootloader reset:** Hold **BOOT**, press and release
+     **EN/RESET**, and click **Connect** while continuing to hold **BOOT**.
+     Release **BOOT** when ESPWebTool connects or reports an error. Do not hold
+     **EN/RESET** by itself; the ESP32 cannot communicate while reset is held.
+     This is the sequence described in Espressif's
+     [manual bootloader guidance](https://docs.espressif.com/projects/esptool/en/latest/esp32/advanced-topics/boot-mode-selection.html#manual-bootloader).
+5. After ESPWebTool connects, add only
+   `ESP-Serial-Bridge-v2.0-esp32-b808213.bin`, set its address to exactly `0x0`,
+   and click **Program**. Wait for flashing to finish before unplugging the
+   board.
+
+![ESPWebTool start screen showing the green Connect button](espwebtool-home.png)
+
+The `.bin` file is a single complete image containing the bootloader, partition
+table, OTA boot data, and application. Do not add the individual build files or
+use any address other than `0x0`.
 
 The release is an immutable snapshot of the current build configuration. Its
 Wi-Fi/AP settings are intentionally retained from `config.h`: this is a
@@ -77,7 +110,7 @@ https://www.youtube.com/watch?v=GoSxlQvuAhg
 
 # Hardware
 here is the wiring diagram recomendation:
-https://raw.githubusercontent.com/AlphaLima/ESP32-Serial-Bridge/master/ESP32-SerialBridge.jpg             
+![Recommended ESP32-to-MAX3232 wiring](ESP32-SerialBridge.jpg)
 Pinning                                                                                     
 COM0 Rx <-> GPIO21                                                                               
 COM0 Tx <-> GPIO01                                                                                 
